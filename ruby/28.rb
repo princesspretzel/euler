@@ -25,7 +25,6 @@ end
 
 def find_corners(ring)
   square = (ring*2)-1
-  # bl = bottom_left(square)
   tr = top_right(square)
   tl = tr - square + 1
   bl = tl - square + 1
@@ -34,12 +33,9 @@ def find_corners(ring)
 end
 
 def loop_through(square)
-  sum = 0
   ring = (square+1)/2
-  (2..ring).each do |num|
-    sum += find_corners(num)
-  end
-  puts sum + 1
+  total = (2..ring).inject(0) { |sum, num| sum + find_corners(num) }
+  puts total + 1 # account for skipping the innermost ring
 end
 
 loop_through(1001)
